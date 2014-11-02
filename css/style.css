@@ -69,3 +69,22 @@ body {
 #adj {
   font-weight: 400;
 }
+
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+    
+    .main {
+      margin-top: 10vh;
+    }
+
+    .main h1{
+      font-size: 30pt;
+    }
+
+    #icon {
+      font-size: 100pt;
+    }
+
+    #locate {
+      width:90%;
+    }
+}

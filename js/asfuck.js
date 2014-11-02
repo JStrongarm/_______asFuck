@@ -1,39 +1,55 @@
-//ICON VARIABLES
-var sunnyIcon = "wi wi-day-sunny";
-var rainIcon = "wi wi-sprinkles";
-var cloudyIcon = "wi wi-cloudy";
-var stormIcon = "wi wi-lightning";
-var coldIcon = "wi wi-snowflake-cold";
-
-//CHECK IF GEOLOCATION IS AVAILABLE
- if ("geolocation" in navigator) {
-  $('.locate').show(); 
-} else {
-  $('.locate').hide();
-}
-
-
-
-//LOCATION UPDATE
-$('#locate').on('click', function() {
-  navigator.geolocation.getCurrentPosition(function(position) {
-    loadWeather(position.coords.latitude+','+position.coords.longitude); 
-  });
-});
+	var sunnyIcon = "wi wi-day-sunny";
+	var rainIcon = "wi wi-sprinkles";
+	var cloudyIcon = "wi wi-cloudy";
+	var stormIcon = "wi wi-lightning";
+	var coldIcon = "wi wi-snowflake-cold";
 
 
 $(document).ready(function() {  
-		setInterval(loadWeather, 60000); //Update the weather every 5 minutes.
+	//ICON VARIABLES
+	//CHECK IF GEOLOCATION IS AVAILABLE
+	 if ("geolocation" in navigator) {
+	  $('#locate').show(); 
+	} else {
+	  $('#locate').hide();
+	}
+
+	navigator.geolocation.getCurrentPosition(function(position) {
+	    loadWeather(position.coords.latitude+','+position.coords.longitude); 
+	  });
+
+
+	//LOCATION UPDATE
+	$('#locate').on('click', function() {
+	  navigator.geolocation.getCurrentPosition(function(position) {
+	    loadWeather(position.coords.latitude+','+position.coords.longitude); 
+	  });
+	});
+
+	$('#locate').bind('touchstart', function() {
+	  navigator.geolocation.getCurrentPosition(function(position) {
+	    loadWeather(position.coords.latitude+','+position.coords.longitude); 
+	  });
+	  alert("Working?")
+	});
+
+
+	loadWeather();
+	setInterval(loadWeather, 60000); //Update the weather every 5 minutes.
 });
+
+
 
 //DOCUMENT
 function loadWeather(location, woeid) {
-$(document).ready(function() {
   $.simpleWeather({
-    location: 'Melbounrne, vic',
-    woeid: '',
+    location: location,
+    woeid: woeid,
     unit: 'c',
     success: function(weather){
+    	console.log("test");
+    console.log(weather.title);
+
   	var iconHolder = $('#icon')[0];
 	//COLOURS
 	var orange = "#F2B441";
@@ -144,7 +160,6 @@ $(document).ready(function() {
 	    	}
 	    }
     });
-});
 }
 
   
