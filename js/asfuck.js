@@ -10,29 +10,35 @@ var coldIcon = "wi wi-snowflake-cold";
   $('.locate').show(); 
 } else {
   $('.locate').hide();
-};
+}
+
+
 
 //LOCATION UPDATE
-$('.locate').on('click', function() {
+$('#locate').on('click', function() {
   navigator.geolocation.getCurrentPosition(function(position) {
     loadWeather(position.coords.latitude+','+position.coords.longitude); 
   });
 });
 
+
+$(document).ready(function() {  
+		setInterval(loadWeather, 60000); //Update the weather every 5 minutes.
+});
+
 //DOCUMENT
+function loadWeather(location, woeid) {
 $(document).ready(function() {
   $.simpleWeather({
-    location: 'Melbourne, VIC',
+    location: 'Melbounrne, vic',
     woeid: '',
     unit: 'c',
     success: function(weather){
   	var iconHolder = $('#icon')[0];
 	//COLOURS
 	var orange = "#F2B441";
-	var red;
 	var lightBlue = "#A0CCFF";
-	var darkBlue;
-	var green;
+	var darkBlue = "#23568F";
 
 	var icon = document.getElementById("icon");
 	var adj = document.getElementById("adj");
@@ -55,7 +61,6 @@ $(document).ready(function() {
 		var currentState = weather.todayCode;
 	    var wind = weather.wind.speed;
 	    var humid = weather.humidity;
-	    var icon;
 	    	console.log(currentTemp + " " + currentState  + " " + wind);
 	    	if (currentTemp >= hot){ //IF IT'S HOT
 	    		if(currentState <= 36 && currentState > 30){ // IF IT'S HOT AND THE ITS SUNNY
@@ -80,7 +85,7 @@ $(document).ready(function() {
 	    	}else if(currentTemp <= cold){ //========== IF IT'S COLD
 	    		if(currentState >= 47){ //====== AND RAINING
 	    			
-	    			console.log("RAIN")
+	    			console.log("RAIN");
 	    			bg.style.background = darkBlue;
 	    			adj.innerHTML = "WET";
 	    			icon.setAttribute("class", rainIcon);
@@ -88,14 +93,14 @@ $(document).ready(function() {
 
 	    		}else if(currentState <= 30 && currentState > 18){ //====== AND CLOUDY
 
-	    			console.log("CLOUDS")
+	    			console.log("CLOUDS");
 	    			bg.style.background = lightBlue;
 	    			adj.innerHTML = "CLOUDY";
 	    			icon.setAttribute("class", cloudyIcon);
 
 	    		}else if(currentState <= 18 && currentState > 12){ //====== AND STORMY
 
-	    			console.log("STORM")
+	    			console.log("STORM");
 	    			bg.style.background = darkBlue;
 	    			adj.innerHTML = "STORMY";
 	    			icon.setAttribute("class", stormIcon);
@@ -111,7 +116,7 @@ $(document).ready(function() {
 	    	}else if(currentTemp > cold && currentTemp < hot){ //===== ===== IF IT'S AVERAGE
 	    		if(currentState <= 36 && currentState < 30){ //====== AND SUNNY
 	    			
-	    			console.log("SHITS SUNNY YO")
+	    			console.log("SHITS SUNNY YO");
 					bg.style.background = orange;
 	    			adj.innerHTML = "SUNNY";
 	    			icon.setAttribute("class", sunnyIcon);
@@ -138,5 +143,8 @@ $(document).ready(function() {
 
 	    	}
 	    }
-    })
+    });
 });
+}
+
+  
