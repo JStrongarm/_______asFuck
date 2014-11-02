@@ -59,43 +59,83 @@ $(document).ready(function() {
 	    	console.log(currentTemp + " " + currentState  + " " + wind);
 	    	if (currentTemp >= hot){ //IF IT'S HOT
 	    		if(currentState <= 36 && currentState > 30){ // IF IT'S HOT AND THE ITS SUNNY
-	    			document.body.style.background = orange;
-	    			document.getElementByClassName("locate").style.background = orange;
+
+	    			bg.style.background = orange;
+	    			adj.innerHTML = "SUNNY";
+	    			icon.setAttribute("class", sunnyIcon);
+
 	    		}else if(currentState <= 30 && currentState > 18){ // AND CLOUDY
-	    			console.log("CLOUDY")
-	    			document.body.style.background = green;
+	    			
+	    			bg.style.background = lightBlue;
+	    			adj.innerHTML = "CLOUDY";
+	    			icon.setAttribute("class", cloudyIcon);
+
+	    		}else{
+
+	    			bg.style.background = orange;
+	    			adj.innerHTML = "HOT";
+	    			icon.setAttribute("class", sunnyIcon);
 	    		}
-	    		console.log("SHITS HOT YO");
+
 	    	}else if(currentTemp <= cold){ //========== IF IT'S COLD
 	    		if(currentState >= 47){ //====== AND RAINING
+	    			
 	    			console.log("RAIN")
+	    			bg.style.background = darkBlue;
+	    			adj.innerHTML = "WET";
+	    			icon.setAttribute("class", rainIcon);
+
+
 	    		}else if(currentState <= 30 && currentState > 18){ //====== AND CLOUDY
+
 	    			console.log("CLOUDS")
-	    			bg = lightBlue;
+	    			bg.style.background = lightBlue;
+	    			adj.innerHTML = "CLOUDY";
+	    			icon.setAttribute("class", cloudyIcon);
+
 	    		}else if(currentState <= 18 && currentState > 12){ //====== AND STORMY
+
 	    			console.log("STORM")
+	    			bg.style.background = darkBlue;
+	    			adj.innerHTML = "STORMY";
+	    			icon.setAttribute("class", stormIcon);
+
 	    		}else{
+
 	    			console.log("SHITS COLD YO"); //====== OR JUST FUCKING COLD
-	    			bg = lightBlue;
-	    			adj.innerHTML = "test";
+	    			bg.style.background = lightBlue;
+	    			adj.innerHTML = "COLD";
+	    			icon.setAttribute("class", coldIcon);
+
 	    		}
 	    	}else if(currentTemp > cold && currentTemp < hot){ //===== ===== IF IT'S AVERAGE
 	    		if(currentState <= 36 && currentState < 30){ //====== AND SUNNY
+	    			
 	    			console.log("SHITS SUNNY YO")
 					bg.style.background = orange;
 	    			adj.innerHTML = "SUNNY";
 	    			icon.setAttribute("class", sunnyIcon);
+
 	    		}else if(currentState <= 30 && currentState > 18){ //====== AND CLOUDY
+	    			
 	    			console.log("SHITS CLOUDY YO (and average)");
 	    			bg.style.background = lightBlue;
 	    			adj.innerHTML = "CLOUDY";
 	    			icon.setAttribute("class", cloudyIcon);
+
 	    		}else{
+	    			
 	    			bg.style.background = orange;
 	    			adj.innerHTML = "AVERAGE";
 	    			icon.setAttribute("class", sunnyIcon);
+
 	    		}
 	    	}else{
+
+	    			bg.style.background = "#Eb01A5";
+	    			adj.innerHTML = "BROKE";
+	    			icon.setAttribute("class", coldIcon);
+
 	    	}
 	    }
     })
