@@ -70,6 +70,24 @@ body {
   font-weight: 400;
 }
 
+#more {
+  text-align: center;
+  margin-top: 25vh;
+  font-family: sans-serif;
+  color: rgba(255,255,255,0.3);
+  cursor: pointer;
+}
+#more:hover {
+  color: white;
+}
+
+#extra {
+  margin-top: 20vh;
+  height: 50vh;
+  background: red;
+  display: none;
+}
+
 @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
     
     .main {

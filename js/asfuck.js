@@ -30,14 +30,29 @@ $(document).ready(function() {
 	  navigator.geolocation.getCurrentPosition(function(position) {
 	    loadWeather(position.coords.latitude+','+position.coords.longitude); 
 	  });
-	  alert("Working?")
 	});
 
+	$("#more").on('click', toggle);
 
 	loadWeather();
 	setInterval(loadWeather, 60000); //Update the weather every 5 minutes.
 });
 
+function toggle() {
+	var el = document.getElementById("extra");
+	if ( el.style.display != 'none' ) {
+
+		el.style.display = 'none';
+
+	}
+
+	else {
+
+		el.style.display = '';
+
+	}
+
+}
 
 
 //DOCUMENT
@@ -158,6 +173,8 @@ function loadWeather(location, woeid) {
 	    			icon.setAttribute("class", coldIcon);
 
 	    	}
+
+
 	    }
     });
 }
