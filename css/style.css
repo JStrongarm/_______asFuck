@@ -75,6 +75,7 @@ body {
 
 #more {
   height: 60px;
+  margin-top: 40px;
   text-align: center;
   vertical-align: middle;
   font-family: sans-serif;
@@ -90,10 +91,39 @@ body {
   height: 50vh;
   display: none;
   position: relative;
-  background: red;
+  background: rgba(0,0,0,0.15);
 }
 
-@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+#extra h2 {
+    font-family: 'Oswald', sans-serif;
+    color: white;
+    font-size: 60pt;
+    text-align: center;
+}
+
+#degree {
+  font-size: 60pt;
+}
+
+#condition {
+    font-family: 'Oswald', sans-serif;
+    font-weight: 100;
+    color: white;
+    font-size: 20pt;
+    text-align: center;
+    letter-spacing: 1px;
+}
+
+#high, #low{
+  font-family: 'Oswald', sans-serif;
+  color: white;
+  font-size: 20pt;
+  font-weight: 100;
+  text-align: center;
+  letter-spacing: 2px;
+}
+
+@media only screen and (min-device-width : 314px) and (max-device-width : 480px) {
   
     .main {
       margin-top: 10vh;

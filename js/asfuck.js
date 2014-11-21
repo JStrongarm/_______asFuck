@@ -9,7 +9,7 @@
 $(document).ready(function() {  
 	//ICON VARIABLES
 	//CHECK IF GEOLOCATION IS AVAILABLE
-	 if ("geolocation" in navigator) {
+	if ("geolocation" in navigator) {
 	  $('#locate').show(); 
 	} else {
 	  $('#locate').hide();
@@ -36,18 +36,9 @@ $(document).ready(function() {
 	setInterval(loadWeather, 60000); //Update the weather every 5 minutes.
 });
 
-function showDiv() {
-   var div = document.getElementById('extra');
-   if(div.style.display == "none"){
-   	console.log("DISPOLAY");
-       div.style.display = "block";
-   }else{
-   	console.log("hide");
-       div.style.display = "none";
-   }
-}
-
-
+$('#more').on('click touch',function(){
+	$('#extra').toggle();
+});
 
 //DOCUMENT
 function loadWeather(location, woeid) {
@@ -89,6 +80,20 @@ function loadWeather(location, woeid) {
 	    var wind = weather.wind.speed;
 	    var humid = weather.humidity;
 	    	console.log(currentTemp + " " + currentState  + " " + wind);
+
+
+	    //EXTRA DATA
+		var degree = document.getElementById("degNum");
+			degree.innerHTML = currentTemp + "<span class='wi wi-degrees'>";
+		var condition = document.getElementById("condition");
+			condition.innerHTML = weather.currently;
+
+		var high = document.getElementById("high");
+			high.innerHTML = "High:" +weather.high + "<span class='wi wi-degrees'>";
+
+		var low = document.getElementById("low");
+			low.innerHTML = "Low:" + weather.low + "<span class='wi wi-degrees'>";
+
 	    if( n >= 7 && n <= 18 ){
 	    	if (currentTemp >= hot){ //IF IT'S HOT
 	    		if(currentState <= 36 && currentState > 30){ // IF IT'S HOT AND THE ITS SUNNY
@@ -207,6 +212,7 @@ function loadWeather(location, woeid) {
 	    	}
    		 }
  	   }
+ 
 	});
 
 }
